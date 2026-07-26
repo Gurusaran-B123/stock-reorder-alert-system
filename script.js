@@ -165,14 +165,13 @@ function average(arr) {
   return Math.round((arr.reduce((a, b) => a + b, 0) / arr.length) * 10) / 10;
 }
 
-function showNotification(type, title, bodyHtml, duration = 5000) {
+function showNotification(type, title, bodyHtml) {
   const popup = document.createElement("div");
   popup.className = `notification-popup ${type}`;
   popup.innerHTML = `
     <button class="notif-close">&times;</button>
     <div class="notif-title">${title}</div>
     <div class="notif-body">${bodyHtml}</div>
-    <div class="notif-progress"></div>
   `;
 
   notificationContainer.appendChild(popup);
@@ -184,9 +183,7 @@ function showNotification(type, title, bodyHtml, duration = 5000) {
   };
 
   closeBtn.addEventListener("click", removePopup);
-
-  // Auto-hide after `duration` ms (default 5s)
-  setTimeout(removePopup, duration);
+  // No auto-hide timer — popup stays until the user clicks the × button.
 }
 
 function escapeHtml(str) {
