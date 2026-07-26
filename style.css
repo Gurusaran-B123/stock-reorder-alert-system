@@ -263,16 +263,6 @@ th {
   color: var(--text-muted);
 }
 
-.notif-progress {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 3px;
-  background: rgba(0,0,0,0.15);
-  border-radius: 0 0 12px 12px;
-  animation: shrink 5s linear forwards;
-}
-
 @keyframes slideIn {
   from { transform: translateX(120%); opacity: 0; }
   to { transform: translateX(0); opacity: 1; }
@@ -281,11 +271,6 @@ th {
 @keyframes slideOut {
   from { transform: translateX(0); opacity: 1; }
   to { transform: translateX(120%); opacity: 0; }
-}
-
-@keyframes shrink {
-  from { width: 100%; }
-  to { width: 0%; }
 }
 
 @media (max-width: 600px) {
