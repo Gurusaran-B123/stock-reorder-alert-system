@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Stock Reorder Alert System</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+
+  <div class="app-wrapper">
+
+    <header class="app-header">
+      <div class="header-icon">📦</div>
+      <h1>Stock Reorder Alert System</h1>
+      <p class="subtitle">Upload your inventory CSV to check stock levels instantly</p>
+    </header>
+
+    <main class="main-content">
+
+      <!-- Upload Card -->
+      <section class="upload-card" id="uploadCard">
+        <div class="upload-zone" id="dropZone">
+          <input type="file" id="fileInput" accept=".csv" hidden />
+          <div class="upload-icon">⬆️</div>
+          <h3>Drag & drop your CSV file here</h3>
+          <p>or</p>
+          <button class="btn btn-primary" id="browseBtn">Browse File</button>
+          <p class="file-hint">Required columns: item_name, current_quantity, reorder_threshold</p>
+          <p class="file-name" id="fileName"></p>
+        </div>
+
+        <button class="btn btn-success" id="uploadBtn" disabled>
+          <span id="uploadBtnText">Upload & Analyze</span>
+        </button>
+      </section>
+
+      <!-- Summary Stats -->
+      <section class="stats-grid" id="statsGrid" style="display:none;">
+        <div class="stat-card stat-total">
+          <div class="stat-value" id="statTotal">0</div>
+          <div class="stat-label">Total Items</div>
+        </div>
+        <div class="stat-card stat-low">
+          <div class="stat-value" id="statLow">0</div>
+          <div class="stat-label">Low Stock</div>
+        </div>
+        <div class="stat-card stat-normal">
+          <div class="stat-value" id="statNormal">0</div>
+          <div class="stat-label">Normal Stock</div>
+        </div>
+        <div class="stat-card stat-high">
+          <div class="stat-value" id="statHigh">0</div>
+          <div class="stat-label">High Stock</div>
+        </div>
+      </section>
+
+      <!-- Results Table -->
+      <section class="results-section" id="resultsSection" style="display:none;">
+        <h2>Inventory Details</h2>
+        <div class="table-wrapper">
+          <table id="resultsTable">
+            <thead>
+              <tr>
+                <th>Item Name</th>
+                <th>Current Qty</th>
+                <th>Threshold</th>
+                <th>Stock %</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="resultsBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="app-footer">
+      <p>Stock Reorder Alert System &mdash; Flask + HTML/CSS/JS</p>
+    </footer>
+  </div>
+
+  <!-- Notification Popup Container -->
+  <div class="notification-container" id="notificationContainer"></div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
